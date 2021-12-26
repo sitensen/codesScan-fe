@@ -59,7 +59,7 @@ export const constantRouterMap = [
         path: 'paper',
         name: 'paper',
         component: () => import('@/views/paper/index'),
-        meta: {title: '报告查看', icon: 'home'}
+        meta: {title: '报告查看', icon: 'order'}
       },
     ]
   },

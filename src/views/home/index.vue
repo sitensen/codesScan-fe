@@ -1,5 +1,21 @@
 <template>
   <div class="app-container">
+
+
+    <div class="statistics-layout">
+      <div class="layout-title">
+        <span>商品统计</span>
+      </div>
+      <el-row>
+        <el-col :span="24">
+          <el-card>
+            <div id="J_chartBarBox" class="chart-box" style="width: 100%;"></div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+
+
     <div class="overview-layout">
       <el-row :gutter="20">
         <el-col :span="12">
@@ -42,34 +58,23 @@
         </el-col>
       </el-row>
     </div>
-    <div class="statistics-layout">
-      <div class="layout-title">
-        <span>订单统计</span>
-        <el-date-picker style="float: right;z-index: 1;margin-top: -5px;" size="small" v-model="orderCountDate"
-          type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期"
-          end-placeholder="结束日期" @change="handleDateChange" :picker-options="pickerOptions">
-        </el-date-picker>
-      </div>
-      <el-row>
-        <el-col :span="24">
-          <el-card>
-            <div id="J_chartLineBox" class="chart-box" style="width: 100%;"></div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="statistics-layout">
-      <div class="layout-title">
-        <span>商品统计</span>
-      </div>
-      <el-row>
-        <el-col :span="24">
-          <el-card>
-            <div id="J_chartBarBox" class="chart-box" style="width: 100%;"></div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+<!--    <div class="statistics-layout">-->
+<!--      <div class="layout-title">-->
+<!--        <span>订单统计</span>-->
+<!--        <el-date-picker style="float: right;z-index: 1;margin-top: -5px;" size="small" v-model="orderCountDate"-->
+<!--          type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期"-->
+<!--          end-placeholder="结束日期" @change="handleDateChange" :picker-options="pickerOptions">-->
+<!--        </el-date-picker>-->
+<!--      </div>-->
+<!--      <el-row>-->
+<!--        <el-col :span="24">-->
+<!--          <el-card>-->
+<!--            <div id="J_chartLineBox" class="chart-box" style="width: 100%;"></div>-->
+<!--          </el-card>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--    </div>-->
+
   </div>
 </template>
 
