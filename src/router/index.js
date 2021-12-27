@@ -53,16 +53,97 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: '/paper',
+    redirect: '/report',
     children: [
       {
-        path: 'paper',
-        name: 'paper',
+        path: 'report',
+        name: 'report',
         component: () => import('@/views/paper/index'),
-        meta: {title: '报告查看', icon: 'order'}
+        meta: {title: '报告管理', icon: 'ums-resource'}
       },
     ]
   },
+
+
+
+
+  {
+    path: '',
+    component: Layout,
+    redirect: '/admin',
+    children: [
+      {
+        path: 'admin',
+        name: 'admin',
+        component: () => import('@/views/ums/admin/index'),
+        meta: {title: '用户列表', icon: 'ums-admin'}
+      },
+    ]
+  },
+
+
+  // {
+  //   path: '',
+  //   component: Layout,
+  //   redirect: '/admin',
+  //   children: [
+  //     {
+  //       path: 'admin',
+  //       name: 'admin',
+  //       component: () => import('@/views/ums/admin/index'),
+  //       meta: {title: '用户列表', icon: 'ums-admin'}
+  //     },
+  //   ]
+  // },
+
+
+  {
+    path: '',
+    component: Layout,
+    redirect: '/role',
+    children: [
+      {
+        path: 'role',
+        name: 'role',
+        component: () => import('@/views/ums/role/index'),
+        meta: {title: '角色列表', icon: 'ums-role'}
+      },
+    ]
+  },
+
+  {
+    path: '',
+    component: Layout,
+    redirect: '/menu',
+    children: [
+      {
+        path: 'menu',
+        name: 'menu',
+        component: () => import('@/views/ums/menu/index'),
+        meta: {title: '菜单列表', icon: 'ums-menu'}
+      },
+    ]
+  },
+
+
+
+  // {
+  //   path: '',
+  //   component: Layout,
+  //   redirect: '/admin',
+  //   children: [
+  //     {
+  //       path: 'admin',
+  //       name: 'admin',
+  //       component: () => import('@/views/ums/admin/index'),
+  //       meta: {title: '用户列表', icon: 'ums-admin'}
+  //     },
+  //   ]
+  // },
+
+
+
+
 
 ]
 
@@ -90,7 +171,7 @@ export const asyncRouterMap = [
         path: 'allocMenu',
         name: 'allocMenu',
         component: () => import('@/views/ums/role/allocMenu'),
-        meta: {title: '分配菜单'},
+        meta: {title: '菜单管理'},
         hidden: true
       },
       {

@@ -1,81 +1,13 @@
 <template>
   <div class="app-container">
-
-
-    <div class="statistics-layout">
-      <div class="layout-title">
-        <span>商品统计</span>
-      </div>
-      <el-row>
-        <el-col :span="24">
-          <el-card>
-            <div id="J_chartBarBox" class="chart-box" style="width: 100%;"></div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
-
-
-    <div class="overview-layout">
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <div class="out-border">
-            <div class="layout-title">商品总览</div>
-            <div style="padding: 40px">
-              <el-row>
-                <el-col :span="6" class="color-danger overview-item-value">100</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">300</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">50</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">500</el-col>
-              </el-row>
-              <el-row class="font-medium">
-                <el-col :span="6" class="overview-item-title">已下架</el-col>
-                <el-col :span="6" class="overview-item-title">已上架</el-col>
-                <el-col :span="6" class="overview-item-title">库存紧张</el-col>
-                <el-col :span="6" class="overview-item-title">全部商品</el-col>
-              </el-row>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="out-border">
-            <div class="layout-title">用户总览</div>
-            <div style="padding: 40px">
-              <el-row>
-                <el-col :span="6" class="color-danger overview-item-value">100</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">200</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">1000</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">5000</el-col>
-              </el-row>
-              <el-row class="font-medium">
-                <el-col :span="6" class="overview-item-title">今日新增</el-col>
-                <el-col :span="6" class="overview-item-title">昨日新增</el-col>
-                <el-col :span="6" class="overview-item-title">本月新增</el-col>
-                <el-col :span="6" class="overview-item-title">会员总数</el-col>
-              </el-row>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-<!--    <div class="statistics-layout">-->
-<!--      <div class="layout-title">-->
-<!--        <span>订单统计</span>-->
-<!--        <el-date-picker style="float: right;z-index: 1;margin-top: -5px;" size="small" v-model="orderCountDate"-->
-<!--          type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="开始日期"-->
-<!--          end-placeholder="结束日期" @change="handleDateChange" :picker-options="pickerOptions">-->
-<!--        </el-date-picker>-->
-<!--      </div>-->
-<!--      <el-row>-->
-<!--        <el-col :span="24">-->
-<!--          <el-card>-->
-<!--            <div id="J_chartLineBox" class="chart-box" style="width: 100%;"></div>-->
-<!--          </el-card>-->
-<!--        </el-col>-->
-<!--      </el-row>-->
-<!--    </div>-->
-
+<!--    https://sspai.com/post/40823-->
+    <iframe
+      src="https://cybermap.kaspersky.com/"
+      frameborder="0"
+      style="width: 100%;height: 700px"
+    ></iframe>
   </div>
+
 </template>
 
 <script>

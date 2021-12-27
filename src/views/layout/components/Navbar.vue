@@ -1,11 +1,12 @@
 <template>
-  <el-menu class="navbar" mode="horizontal" >
+  <el-menu class="navbar" mode="horizontal">
 <!--    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>-->
-<!--    <breadcrumb></breadcrumb>-->
+    <breadcrumb></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
-      <div class="avatar-wrapper">
-        <img class="user-avatar" :src="avatar">
-        <i class="el-icon-caret-bottom"></i>
+      <div class="avatar-wrapper" style="color: rgb(191, 203, 217);">
+        张三
+<!--        <img class="user-avatar" :src="avatar">-->
+<!--        <i class="el-icon-caret-bottom"></i>-->
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
@@ -70,9 +71,10 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .navbar {
+  background-color: #4879de;
+  color: #fff;
   height: 50px;
   line-height: 50px;
-  //background-color: rgb(48, 65, 86);
   border-radius: 0px !important;
   .hamburger-container {
     line-height: 58px;
@@ -93,7 +95,6 @@ export default {
     right: 35px;
     .avatar-wrapper {
       cursor: pointer;
-      margin-top: 5px;
       position: relative;
       .user-avatar {
         width: 40px;

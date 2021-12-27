@@ -1,4 +1,4 @@
-<template>
+<template> 
   <div class="app-container">
 <!--    <el-card class="filter-container" shadow="never">-->
 <!--      <div class="filter-title">-->
@@ -20,9 +20,9 @@
 <!--      </div>-->
 <!--    </el-card>-->
     <el-card class="operate-container" shadow="never">
-      <i class="el-icon-tickets"></i>
+<!--      <i class="el-icon-tickets"></i>-->
       <span>数据列表</span>
-      <el-button size="mini" class="btn-add" @click="handleAdd()" style="margin-left: 20px">添加</el-button>
+      <el-button size="mini" type="primary" class="btn-add" @click="handleAdd()" style="margin-left: 20px">添加</el-button>
     </el-card>
     <div class="table-container">
       <el-table ref="roleTable" :data="list" style="width: 100%;" v-loading="listLoading" border>
@@ -53,8 +53,8 @@
             <el-row>
               <el-button size="mini" type="info" @click="handleSelectMenu(scope.$index, scope.row)">分配菜单
               </el-button>
-              <el-button size="mini" type="info" @click="handleSelectResource(scope.$index, scope.row)">分配资源
-              </el-button>
+<!--              <el-button size="mini" type="info" @click="handleSelectResource(scope.$index, scope.row)">分配资源-->
+<!--              </el-button>-->
               <el-button size="mini" type="primary" @click="handleUpdate(scope.$index, scope.row)">
                 编辑
               </el-button>

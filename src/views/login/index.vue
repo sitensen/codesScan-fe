@@ -5,7 +5,7 @@
 
     <div class='loginLeft'>
       <iframe
-        src="http://123.57.240.37/donghua/index.html"
+        src="https://www.shangbian.net/donghua/index.html"
         frameborder="0"
         style="width:100%;height: 855px;margin-top: -9px"
         id="iframeBox"></iframe>
@@ -14,7 +14,7 @@
 
     <div class="loginRight">
       <el-card class="login-form-layout" shadow="hover">
-        <h2 class="login-title color-main">系统登录</h2>
+<!--        <h2 class="login-title color-main">系统登录</h2>-->
         <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
           <el-form-item prop="username">
             <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="请输入用户名">
