@@ -142,7 +142,6 @@
           this.$message.success({
             message: '分配成功',
             type: 'success',
-            duration: 1000
           });
           this.$router.back();
         })

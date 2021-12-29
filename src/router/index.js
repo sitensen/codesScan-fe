@@ -144,10 +144,16 @@ export const constantRouterMap = [
 
 
 
-
 ]
 
 export const asyncRouterMap = [
+  {
+
+    path: 'paper',
+    name: 'paper',
+    component: () => import('@/views/paper/index'),
+    meta: {title: '报告管理', icon: 'ums-resource'}
+  },
   {
     path:'/ums',
     component: Layout,

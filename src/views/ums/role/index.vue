@@ -35,19 +35,19 @@
         <el-table-column label="角色描述" align="center">
           <template slot-scope="scope">{{scope.row.description}}</template>
         </el-table-column>
-        <el-table-column label="用户数" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.adminCount}}</template>
-        </el-table-column>
-        <el-table-column label="添加时间" width="160" align="center">
-          <template slot-scope="scope">{{scope.row.createTime | formatDateTime}}</template>
-        </el-table-column>
-        <el-table-column label="是否启用" width="140" align="center">
-          <template slot-scope="scope">
-            <el-switch @change="handleStatusChange(scope.$index, scope.row)" :active-value="1" :inactive-value="0"
-              v-model="scope.row.status">
-            </el-switch>
-          </template>
-        </el-table-column>
+<!--        <el-table-column label="用户数" width="100" align="center">-->
+<!--          <template slot-scope="scope">{{scope.row.adminCount}}</template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column label="添加时间" width="160" align="center">-->
+<!--          <template slot-scope="scope">{{scope.row.createTime | formatDateTime}}</template>-->
+<!--        </el-table-column>-->
+<!--        <el-table-column label="是否启用" width="140" align="center">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-switch @change="handleStatusChange(scope.$index, scope.row)" :active-value="1" :inactive-value="0"-->
+<!--              v-model="scope.row.status">-->
+<!--            </el-switch>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column label="操作" width="350" align="center">
           <template slot-scope="scope">
             <el-row>
