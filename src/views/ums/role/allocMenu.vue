@@ -69,23 +69,40 @@
             }
           }
         }
-        this.$confirm('是否分配菜单？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let params = new URLSearchParams();
-          params.append("roleId", this.roleId);
-          params.append("menuIds", Array.from(checkedMenuIds));
-          allocMenu(params).then(response => {
-            this.$message({
-              message: '分配成功',
-              type: 'success',
-              duration: 1000
-            });
-            this.$router.back();
-          })
+
+
+        let params = new URLSearchParams();
+        params.append("roleId", this.roleId);
+        params.append("menuIds", Array.from(checkedMenuIds));
+        allocMenu(params).then(response => {
+          this.$message.success({
+            content: '分配成功',
+            type: 'success',
+            duration: 1000
+          });
+          this.$router.back();
         })
+
+        // this.$confirm('是否分配菜单？', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   let params = new URLSearchParams();
+        //   params.append("roleId", this.roleId);
+        //   params.append("menuIds", Array.from(checkedMenuIds));
+        //   allocMenu(params).then(response => {
+        //     this.$message({
+        //       message: '分配成功',
+        //       type: 'success',
+        //       duration: 1000
+        //     });
+        //     this.$router.back();
+        //   })
+        // })
+
+
+
       },
       handleClear() {
         this.$refs.tree.setCheckedKeys([]);

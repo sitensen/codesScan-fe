@@ -150,37 +150,61 @@
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$confirm('是否提交数据', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              if (this.isEdit) {
-                updateMenu(this.$route.query.id, this.menu).then(response => {
-                  this.$message({
-                    message: '修改成功',
-                    type: 'success',
-                    duration: 1000
-                  });
-                  this.$router.back();
+
+            if (this.isEdit) {
+              updateMenu(this.$route.query.id, this.menu).then(response => {
+                this.$message.success({
+                  content: '修改成功',
+                  type: 'success',
+                  duration: 1000
                 });
-              } else {
-                createMenu(this.menu).then(response => {
-                  this.$refs[formName].resetFields();
-                  this.resetForm(formName);
-                  this.$message({
-                    message: '提交成功',
-                    type: 'success',
-                    duration: 1000
-                  });
-                  this.$router.back();
+                this.$router.back();
+              });
+            } else {
+              createMenu(this.menu).then(response => {
+                this.$refs[formName].resetFields();
+                this.resetForm(formName);
+                this.$message.success({
+                  content: '提交成功',
+                  type: 'success',
+                  duration: 1000
                 });
-              }
-            });
+                this.$router.back();
+              });
+            }
+
+
+            // this.$confirm('是否提交数据', '提示', {
+            //   confirmButtonText: '确定',
+            //   cancelButtonText: '取消',
+            //   type: 'warning'
+            // }).then(() => {
+            //   if (this.isEdit) {
+            //     updateMenu(this.$route.query.id, this.menu).then(response => {
+            //       this.$message({
+            //         message: '修改成功',
+            //         type: 'success',
+            //         duration: 1000
+            //       });
+            //       this.$router.back();
+            //     });
+            //   } else {
+            //     createMenu(this.menu).then(response => {
+            //       this.$refs[formName].resetFields();
+            //       this.resetForm(formName);
+            //       this.$message({
+            //         message: '提交成功',
+            //         type: 'success',
+            //         duration: 1000
+            //       });
+            //       this.$router.back();
+            //     });
+            //   }
+            // });
 
           } else {
-            this.$message({
-              message: '验证失败',
+            this.$message.error({
+              content: '验证失败',
               type: 'error',
               duration: 1000
             });

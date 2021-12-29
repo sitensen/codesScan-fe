@@ -127,8 +127,8 @@
         updateHidden(row.id, {
           hidden: row.hidden
         }).then(response => {
-          this.$message({
-            message: '修改成功',
+          this.$message.success({
+            content: '修改成功',
             type: 'success',
             duration: 1000
           });
@@ -151,20 +151,31 @@
         });
       },
       handleDelete(index, row) {
-        this.$confirm('是否要删除该菜单', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          deleteMenu(row.id).then(response => {
-            this.$message({
-              message: '删除成功',
-              type: 'success',
-              duration: 1000
-            });
-            this.getList();
+
+        deleteMenu(row.id).then(response => {
+          this.$message.success({
+            content: '删除成功',
+            type: 'success',
+            duration: 1000
           });
+          this.getList();
         });
+
+        // this.$confirm('是否要删除该菜单', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   deleteMenu(row.id).then(response => {
+        //     this.$message({
+        //       message: '删除成功',
+        //       type: 'success',
+        //       duration: 1000
+        //     });
+        //     this.getList();
+        //   });
+        // });
+
       }
     },
     filters: {

@@ -125,31 +125,60 @@
         return checkedCount === cateResources.length;
       },
       handleSave() {
-        this.$confirm('是否分配资源？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let checkedResourceIds = new Set();
-          if (this.allResource != null && this.allResource.length > 0) {
-            this.allResource.forEach(item => {
-              if (item.checked) {
-                checkedResourceIds.add(item.id);
-              }
-            });
-          }
-          let params = new URLSearchParams();
-          params.append("roleId", this.roleId);
-          params.append("resourceIds", Array.from(checkedResourceIds));
-          allocResource(params).then(response => {
-            this.$message({
-              message: '分配成功',
-              type: 'success',
-              duration: 1000
-            });
-            this.$router.back();
-          })
+
+
+        let checkedResourceIds = new Set();
+        if (this.allResource != null && this.allResource.length > 0) {
+          this.allResource.forEach(item => {
+            if (item.checked) {
+              checkedResourceIds.add(item.id);
+            }
+          });
+        }
+        let params = new URLSearchParams();
+        params.append("roleId", this.roleId);
+        params.append("resourceIds", Array.from(checkedResourceIds));
+        allocResource(params).then(response => {
+          this.$message.success({
+            message: '分配成功',
+            type: 'success',
+            duration: 1000
+          });
+          this.$router.back();
         })
+
+
+        // this.$confirm('是否分配资源？', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //
+        //   let checkedResourceIds = new Set();
+        //   if (this.allResource != null && this.allResource.length > 0) {
+        //     this.allResource.forEach(item => {
+        //       if (item.checked) {
+        //         checkedResourceIds.add(item.id);
+        //       }
+        //     });
+        //   }
+        //   let params = new URLSearchParams();
+        //   params.append("roleId", this.roleId);
+        //   params.append("resourceIds", Array.from(checkedResourceIds));
+        //   allocResource(params).then(response => {
+        //     this.$message({
+        //       message: '分配成功',
+        //       type: 'success',
+        //       duration: 1000
+        //     });
+        //     this.$router.back();
+        //   })
+        //
+        //
+        // })
+
+
+
       },
       handleClear() {
         this.allResourceCate.forEach(item => {

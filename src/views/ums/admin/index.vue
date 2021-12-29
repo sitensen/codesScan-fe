@@ -1,4 +1,4 @@
-<template> 
+<template>
   <div class="app-container">
 <!--    <el-card class="filter-container" shadow="never">-->
 <!--      <div class="filter-title">-->
@@ -239,42 +239,73 @@
         this.isEdit = false;
         this.admin = Object.assign({}, defaultAdmin);
       },
+
+
       handleStatusChange(index, row) {
-        this.$confirm('是否要修改该状态?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          updateStatus(row.id, {
-            status: row.status
-          }).then(response => {
-            this.$message({
-              type: 'success',
-              message: '修改成功!'
-            });
+
+        updateStatus(row.id, {
+          status: row.status
+        }).then(response => {
+          this.$message.success({
+            type: 'success',
+            content: '修改成功!'
           });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消修改'
+        });
+
+
+        // this.$confirm('是否要修改该状态?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   updateStatus(row.id, {
+        //     status: row.status
+        //   }).then(response => {
+        //     this.$message({
+        //       type: 'success',
+        //       message: '修改成功!'
+        //     });
+        //   });
+        // }).catch(() => {
+        //   this.$message({
+        //     type: 'info',
+        //     message: '取消修改'
+        //   });
+        //   this.getList();
+        // });
+
+
+
+      },
+
+
+      handleDelete(index, row) {
+
+        deleteAdmin(row.id).then(response => {
+          this.$message.success({
+            type: 'success',
+            content: '删除成功!'
           });
           this.getList();
         });
-      },
-      handleDelete(index, row) {
-        this.$confirm('是否要删除该用户?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          deleteAdmin(row.id).then(response => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-            this.getList();
-          });
-        });
+
+
+        // this.$confirm('是否要删除该用户?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   deleteAdmin(row.id).then(response => {
+        //     this.$message({
+        //       type: 'success',
+        //       message: '删除成功!'
+        //     });
+        //     this.getList();
+        //   });
+        // });
+
+
+
       },
       handleUpdate(index, row) {
         this.dialogVisible = true;
@@ -284,51 +315,98 @@
       handleDialogConfirm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$confirm('是否要确认?', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              if (this.isEdit) {
-                updateAdmin(this.admin.id, this.admin).then(response => {
-                  this.$message({
-                    message: '修改成功！',
-                    type: 'success'
-                  });
-                  this.dialogVisible = false;
-                  this.getList();
-                })
-              } else {
-                createAdmin(this.admin).then(response => {
-                  this.$message({
-                    message: '添加成功！',
-                    type: 'success'
-                  });
-                  this.dialogVisible = false;
-                  this.getList();
-                })
-              }
-            })
+
+
+            if (this.isEdit) {
+              updateAdmin(this.admin.id, this.admin).then(response => {
+                this.$message.success({
+                  content: '修改成功！',
+                  type: 'success'
+                });
+                this.dialogVisible = false;
+                this.getList();
+              })
+            } else {
+              createAdmin(this.admin).then(response => {
+                this.$message.success({
+                  content: '添加成功！',
+                  type: 'success'
+                });
+                this.dialogVisible = false;
+                this.getList();
+              })
+            }
+
+            // this.$confirm('是否要确认?', '提示', {
+            //   confirmButtonText: '确定',
+            //   cancelButtonText: '取消',
+            //   type: 'warning'
+            // }).then(() => {
+            //
+            //   if (this.isEdit) {
+            //     updateAdmin(this.admin.id, this.admin).then(response => {
+            //       this.$message({
+            //         message: '修改成功！',
+            //         type: 'success'
+            //       });
+            //       this.dialogVisible = false;
+            //       this.getList();
+            //     })
+            //   } else {
+            //     createAdmin(this.admin).then(response => {
+            //       this.$message({
+            //         message: '添加成功！',
+            //         type: 'success'
+            //       });
+            //       this.dialogVisible = false;
+            //       this.getList();
+            //     })
+            //   }
+            //
+            // })
+            //
+
+
           }
         })
       },
+
+
       handleAllocDialogConfirm() {
-        this.$confirm('是否要确认?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let params = new URLSearchParams();
-          params.append("adminId", this.allocAdminId);
-          params.append("roleIds", this.allocRoleIds);
-          allocRole(params).then(response => {
-            this.$message({
-              message: '分配成功！',
-              type: 'success'
-            });
-            this.allocDialogVisible = false;
-          })
+
+
+        let params = new URLSearchParams();
+        params.append("adminId", this.allocAdminId);
+        params.append("roleIds", this.allocRoleIds);
+        allocRole(params).then(response => {
+          this.$message.success({
+            content: '分配成功！',
+            type: 'success'
+          });
+          this.allocDialogVisible = false;
         })
+
+
+        // this.$confirm('是否要确认?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   let params = new URLSearchParams();
+        //   params.append("adminId", this.allocAdminId);
+        //   params.append("roleIds", this.allocRoleIds);
+        //   allocRole(params).then(response => {
+        //     this.$message({
+        //       message: '分配成功！',
+        //       type: 'success'
+        //     });
+        //     this.allocDialogVisible = false;
+        //   })
+        //
+        // })
+
+
+
       },
       handleSelectRole(index, row) {
         this.allocAdminId = row.id;
@@ -359,6 +437,8 @@
           }
         });
       },
+
+
       cancledialog(formName) {
         this.dialogVisible = false;
         if (this.$refs[formName]) {

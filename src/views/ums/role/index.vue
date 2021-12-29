@@ -180,45 +180,79 @@
         this.role = Object.assign({}, defaultRole);
       },
       handleStatusChange(index, row) {
-        this.$confirm('是否要修改该状态?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          updateStatus(row.id, {
-            status: row.status
-          }).then(response => {
-            this.$message({
-              type: 'success',
-              message: '修改成功!'
-            });
+
+
+        updateStatus(row.id, {
+          status: row.status
+        }).then(response => {
+          this.$message.success({
+            type: 'success',
+            content: '修改成功!'
           });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消修改'
+        });
+
+
+        // this.$confirm('是否要修改该状态?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //
+        //
+        //   updateStatus(row.id, {
+        //     status: row.status
+        //   }).then(response => {
+        //     this.$message({
+        //       type: 'success',
+        //       message: '修改成功!'
+        //     });
+        //   });
+        //
+        //
+        // }).catch(() => {
+        //   this.$message({
+        //     type: 'info',
+        //     message: '取消修改'
+        //   });
+        //   this.getList();
+        // });
+
+
+
+      },
+      handleDelete(index, row) {
+
+        let ids = [];
+        ids.push(row.id);
+        let params = new URLSearchParams();
+        params.append("ids", ids);
+        deleteRole(params).then(response => {
+          this.$message.success({
+            type: 'success',
+            content: '删除成功!'
           });
           this.getList();
         });
-      },
-      handleDelete(index, row) {
-        this.$confirm('是否要删除该角色?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let ids = [];
-          ids.push(row.id);
-          let params = new URLSearchParams();
-          params.append("ids", ids);
-          deleteRole(params).then(response => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-            this.getList();
-          });
-        });
+
+        // this.$confirm('是否要删除该角色?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //
+        //   let ids = [];
+        //   ids.push(row.id);
+        //   let params = new URLSearchParams();
+        //   params.append("ids", ids);
+        //   deleteRole(params).then(response => {
+        //     this.$message({
+        //       type: 'success',
+        //       message: '删除成功!'
+        //     });
+        //     this.getList();
+        //   });
+        //
+        // });
       },
       handleUpdate(index, row) {
         this.dialogVisible = true;
@@ -228,31 +262,58 @@
       handleDialogConfirm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$confirm('是否要确认?', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              if (this.isEdit) {
-                updateRole(this.role.id, this.role).then(response => {
-                  this.$message({
-                    message: '修改成功！',
-                    type: 'success'
-                  });
-                  this.dialogVisible = false;
-                  this.getList();
-                })
-              } else {
-                createRole(this.role).then(response => {
-                  this.$message({
-                    message: '添加成功！',
-                    type: 'success'
-                  });
-                  this.dialogVisible = false;
-                  this.getList();
-                })
-              }
-            })
+
+
+            if (this.isEdit) {
+              updateRole(this.role.id, this.role).then(response => {
+                this.$message.success({
+                  content: '修改成功！',
+                  type: 'success'
+                });
+                this.dialogVisible = false;
+                this.getList();
+              })
+            } else {
+              createRole(this.role).then(response => {
+                this.$message.success({
+                  content: '添加成功！',
+                  type: 'success'
+                });
+                this.dialogVisible = false;
+                this.getList();
+              })
+            }
+
+
+            //
+            // this.$confirm('是否要确认?', '提示', {
+            //   confirmButtonText: '确定',
+            //   cancelButtonText: '取消',
+            //   type: 'warning'
+            // }).then(() => {
+            //   if (this.isEdit) {
+            //     updateRole(this.role.id, this.role).then(response => {
+            //       this.$message({
+            //         message: '修改成功！',
+            //         type: 'success'
+            //       });
+            //       this.dialogVisible = false;
+            //       this.getList();
+            //     })
+            //   } else {
+            //     createRole(this.role).then(response => {
+            //       this.$message({
+            //         message: '添加成功！',
+            //         type: 'success'
+            //       });
+            //       this.dialogVisible = false;
+            //       this.getList();
+            //     })
+            //   }
+            // })
+
+
+
           }
         })
       },
