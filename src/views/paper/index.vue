@@ -5,15 +5,12 @@
   <div style="margin-top: 30px;margin-left: 8px;margin-right: 8px">
 
 
-    <!--    -->
-<!--    <a-button style="margin-bottom: 20px" type="primary" @click="onclickShow">上传代码</a-button>-->
 
 
     <a-upload-dragger
       name="file"
       :multiple="true"
-      method="get"
-      action="/file/upload"
+      :customRequest="customRequest"
       @change="handleChange"
     >
       <p class="ant-upload-drag-icon">
@@ -54,64 +51,26 @@
              <a style="color: #1890ff">删除</a>
           </a-popconfirm>
       </span>
+
+
+
     </a-table>
 
-
-    <a-modal
-      title="上传代码"
-      :visible="visible"
-      :confirm-loading="confirmLoading"
-      @ok="handleOk"
-      @cancel="handleCancel"
-    >
-
-      <!--代码上传-->
-      <!--      <a-form-model-->
-      <!--        ref="ruleForm"-->
-      <!--        :model="form"-->
-      <!--        :rules="rules"-->
-      <!--        :label-col="labelCol"-->
-      <!--        :wrapper-col="wrapperCol"-->
-      <!--      >-->
-      <!--        <a-form-model-item label="类型" prop="category">-->
-      <!--          <a-select v-model="form.category" placeholder="" disabled>-->
-      <!--            <a-select-option value="python">-->
-      <!--              python-->
-      <!--            </a-select-option>-->
-      <!--            <a-select-option value="JAVA">-->
-      <!--              JAVA-->
-      <!--            </a-select-option>-->
-      <!--          </a-select>-->
-      <!--        </a-form-model-item>-->
-
-
-
-
-      <a-upload-dragger
-        name="file"
-        :multiple="true"
-        method="get"
-        action="/file/upload"
-        @change="handleChange"
-      >
-        <p class="ant-upload-drag-icon">
-          <a-icon type="inbox"/>
-        </p>
-        <p class="ant-upload-text">
-          单击或拖动文件到此区域以上传
-        </p>
-        <p class="ant-upload-hint">
-          请上传代码
-        </p>
-      </a-upload-dragger>
-      <!--      </a-form-model>-->
-
-    </a-modal>
 
   </div>
 </template>
 
 <script>
+
+import {
+  saveReport,
+  fetchList,
+  uploadFile,
+  deleteRole
+} from '@/api/paper';
+
+
+
 export default {
   data() {
     return {
@@ -124,6 +83,17 @@ export default {
       },
 
       rules: {},
+
+
+      pagination:{
+        total:0,
+        defaultCurrent: 1,  // 默认当前页数
+        defaultPageSize: 10,   // 默认当前页显示数据的大小
+        onChange: (current, size) => {
+          this.getList({pageIndex:current,pageSize:10})
+        } // 点击页码事件
+
+      },
 
 
       columns: [
@@ -236,10 +206,6 @@ export default {
     //
     // },
 
-    handleChange() {
-
-
-    },
 
     handleCancel() {
       this.visible = false;
@@ -283,22 +249,70 @@ export default {
 
 
 
-    getList() {
+    getList(param) {
       this.listLoading = true;
-      fetchList().then(response => {
+      fetchList(param).then(response => {
         this.listLoading = false;
-        this.list = response.data.list;
-        this.total = response.data.total;
+        this.list = response.data.records;
+        this.pagination.total = response.data.total;
       });
     },
+
+
+    handleChange(value) {
+      const filename = value.file.minioUrl;
+      value.file.status = 'done';
+    },
+
+
+
+    customRequest(data){
+      const formData = new FormData();
+      formData.append("file",data.file);
+      const that=this;
+      uploadFile(formData).then(res => {
+        let file = {
+          url:res.data.minioUrl,
+          name:res.data.name,
+          status:'done',
+          response:'{"status":"success"}'
+        };
+        this.form.codePath=res.data.minioUrl;
+
+
+        // this.$message.success('upload successfully.');
+        saveReport(that.form).then(response => {
+          that.$message.success({
+            content: '添加成功！',
+            key: '1',
+          });
+          that.visible = false;
+          that.getList();
+        });
+
+        return file;
+      });
+    },
+
 
 
     handleEdit(index, row) {
       console.log(index, row);
     },
-    handleDelete(index, row) {
-      console.log(index, row);
+
+
+
+    handleDelete(id) {
+      deleteRole({id:id}).then(response => {
+        this.$message.success({
+          type: 'success',
+          content: '删除成功!'
+        });
+        this.getList();
+      });
     }
+
+
   }
 }
 </script>
