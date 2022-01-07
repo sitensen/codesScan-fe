@@ -231,10 +231,10 @@ export default {
 
     },
 
-    handleOk() {
-
-
-    },
+    // handleOk() {
+    //
+    //
+    // },
 
     handleChange() {
 
@@ -247,6 +247,49 @@ export default {
 
     onclickShow() {
       this.visible = true;
+    },
+
+
+
+    handleOk() {
+
+      const {
+        reportType,
+        codePath,
+        codeType,
+        name,
+      }=this.form
+
+
+      const that=this;
+
+      if(!reportType || !codePath || !codeType || !name){
+        this.$message.error({
+          content: '请填写完整内容',
+        });
+      }else{
+
+        saveReport(that.form).then(response => {
+          that.$message.success({
+            content: '添加成功！',
+            key: '1',
+          });
+          that.getList();
+        });
+
+      }
+
+    },
+
+
+
+    getList() {
+      this.listLoading = true;
+      fetchList().then(response => {
+        this.listLoading = false;
+        this.list = response.data.list;
+        this.total = response.data.total;
+      });
     },
 
 
